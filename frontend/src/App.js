@@ -120,9 +120,9 @@ function App() {
       const decoder = new TextDecoder();
       let assistantMessage = '';
 
-      while (true) {
+      const processChunk = async () => {
         const { done, value } = await reader.read();
-        if (done) break;
+        if (done) return;
 
         const chunk = decoder.decode(value);
         assistantMessage += chunk;
@@ -132,7 +132,11 @@ function App() {
           newMessages[newMessages.length - 1].content = assistantMessage;
           return newMessages;
         });
-      }
+
+        await processChunk();
+      };
+
+      await processChunk();
     } catch (error) {
       console.error('Chat error:', error);
       setMessages(prev => [...prev, {
