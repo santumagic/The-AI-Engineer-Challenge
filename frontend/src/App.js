@@ -114,11 +114,11 @@ function App() {
         responseType: 'stream'
       });
 
-      let assistantMessage = '';
       setMessages(prev => [...prev, { type: 'assistant', content: '' }]);
 
       const reader = response.data.getReader();
       const decoder = new TextDecoder();
+      let assistantMessage = '';
 
       while (true) {
         const { done, value } = await reader.read();
