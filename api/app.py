@@ -174,8 +174,8 @@ async def rag_chat(request: RAGChatRequest):
             user_prompt.create_message(context=context, question=request.user_message)
         ]
         
-        # Initialize chat model
-        chat_model = ChatOpenAI(model_name=request.model)
+        # Initialize chat model with API key from request
+        chat_model = ChatOpenAI(model_name=request.model, api_key=request.api_key)
         
         # Create streaming response
         async def generate():
