@@ -6,13 +6,21 @@
 
 ## <h1 align="center" id="heading"> 👋 Welcome to the AI Engineer Challenge</h1>
 
-## 🤖 Your First Vibe Coding LLM Application
+## 🤖 Your First Vibe Coding LLM Application with RAG
 
 > If you are a novice, and need a bit more help to get your dev environment off the ground, check out this [Setup Guide](docs/GIT_SETUP.md). This guide will walk you through the 'git' setup you need to get started.
 
 > For additional context on LLM development environments and API key setup, you can also check out our [Interactive Dev Environment for LLM Development](https://github.com/AI-Maker-Space/Interactive-Dev-Environment-for-AI-Engineers).
 
-In this repository, we'll walk you through the steps to create a LLM (Large Language Model) powered application with a vibe-coded frontend!
+In this repository, we'll walk you through the steps to create a LLM (Large Language Model) powered application with **Retrieval-Augmented Generation (RAG)** capabilities! This enhanced version allows you to upload PDF documents and chat with them using AI.
+
+## 🆕 New RAG Features
+
+- 📄 **PDF Upload & Processing**: Upload PDF documents and automatically extract and index their content
+- 🔍 **Intelligent Search**: Find relevant information from your documents using semantic search
+- 💬 **Context-Aware Chat**: Ask questions about your PDFs and get accurate, context-based answers
+- ⚡ **Real-time Streaming**: Get instant responses as the AI processes your questions
+- 🎨 **Modern UI**: Beautiful, responsive interface with drag-and-drop functionality
 
 Are you ready? Let's get started!
 
@@ -91,6 +99,41 @@ Got everything in place? Let's move on!
 3. Set your OpenAI API key in the shell before running the server, for example `export OPENAI_API_KEY=sk-...`.
 4. Start the backend directly from the project root with `uv run uvicorn api.app:app --reload` (or `uv run python api/app.py` for a one-off run).
 5. Additional backend details live in `api/README.md`.
+
+</details>
+
+<details>
+  <summary>🚀 Running the Complete RAG Application</summary>
+
+### Prerequisites
+- Python 3.11+ with `uv` package manager
+- Node.js 14+ and npm
+- OpenAI API key
+
+### Backend Setup
+1. Install dependencies: `uv sync`
+2. Set your OpenAI API key: `export OPENAI_API_KEY=sk-...`
+3. Start the backend: `uv run uvicorn api.app:app --reload`
+4. Backend will be available at `http://localhost:8000`
+
+### Frontend Setup
+1. Navigate to frontend directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Frontend will be available at `http://localhost:3000`
+
+### Using the RAG Application
+1. Open `http://localhost:3000` in your browser
+2. Enter your OpenAI API key
+3. Upload a PDF document (drag & drop or click to select)
+4. Wait for the PDF to be processed and indexed
+5. Start chatting with your document!
+
+### API Endpoints
+- `POST /api/upload-pdf` - Upload and index PDF files
+- `POST /api/rag-chat` - Chat with indexed PDF content
+- `GET /api/session/{session_id}` - Get session information
+- `GET /api/health` - Health check
 
 </details>
 
