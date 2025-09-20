@@ -165,7 +165,7 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>📚 RAG PDF Chat</h1>
+        <h1>✨ Magical RAG PDF Chat</h1>
         <p>Upload a PDF document and chat with it using AI-powered retrieval-augmented generation</p>
       </header>
 
