@@ -16,6 +16,7 @@ from pathlib import Path
 from aimakerspace.text_utils import PDFLoader, CharacterTextSplitter
 from aimakerspace.vectordatabase import VectorDatabase
 from aimakerspace.openai_utils.chatmodel import ChatOpenAI
+from aimakerspace.openai_utils.embedding import EmbeddingModel
 from aimakerspace.openai_utils.prompts import SystemRolePrompt, UserRolePrompt
 
 # Initialize FastAPI application with a title
@@ -118,7 +119,8 @@ async def upload_pdf(
             chunks = text_splitter.split_texts(pdf_loader.documents)
             
             # Create vector database and index the chunks
-            vector_db = VectorDatabase()
+            embedding_model = EmbeddingModel(api_key=api_key)
+            vector_db = VectorDatabase(embedding_model=embedding_model)
             vector_db = await vector_db.abuild_from_list(chunks)
             
             # Store the session data

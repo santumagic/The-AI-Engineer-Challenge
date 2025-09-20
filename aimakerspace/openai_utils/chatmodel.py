@@ -12,14 +12,14 @@ ChatMessage = MutableMapping[str, Any]
 class ChatOpenAI:
     """Thin wrapper around the OpenAI chat completion APIs."""
 
-    def __init__(self, model_name: str = "gpt-4o-mini"):
+    def __init__(self, model_name: str = "gpt-4o-mini", api_key: str = None):
         self.model_name = model_name
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        self.openai_api_key = api_key or os.getenv("OPENAI_API_KEY")
         if self.openai_api_key is None:
             raise ValueError("OPENAI_API_KEY is not set")
 
-        self._client = OpenAI()
-        self._async_client = AsyncOpenAI()
+        self._client = OpenAI(api_key=self.openai_api_key)
+        self._async_client = AsyncOpenAI(api_key=self.openai_api_key)
 
     def run(
         self,
